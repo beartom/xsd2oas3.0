@@ -1,0 +1,168 @@
+{
+  "components": {
+    "schemas": {
+       "RootMsgSchema": 
+          {
+          "type": "object",
+          "properties": {
+            "OneOfPrivilegeType": {
+              "$ref":"#/components/schemas/tns_TestPrivilegeType"
+            }
+          },
+          "required": ["OneOfPrivilegeType"]
+        },
+      "tns_TestPrivilegeType": 
+          {
+          "oneOf": [
+            {
+              "type": "object",
+              "properties": {
+                "PrivilegeIntProperty": {
+                  "type": "number"
+                }
+              }
+            },
+            {
+              "type": "object",
+              "properties": {
+                "PrivilegeStrProperty": {
+                  "type": "string"
+                }
+              }
+            },
+            {
+              "type": "object",
+              "properties": {
+                "StringProperty": {
+                  "$ref":"#/components/schemas/tns_SimpleText"
+                }
+              }
+            },
+            {
+              "type": "object",
+              "properties": {
+                "StringPropertyWithLength": {
+                  "$ref":"#/components/schemas/tns_Max2000Text"
+                }
+              }
+            },
+            {
+              "type": "object",
+              "properties": {
+                "StringPropertyWithPattern": {
+                  "$ref":"#/components/schemas/tns_Max200TextWithPattern"
+                }
+              }
+            },
+            {
+              "type": "object",
+              "properties": {
+                "BooleanProperty": {
+                  "$ref":"#/components/schemas/tns_BooleanType"
+                }
+              }
+            },
+            {
+              "type": "object",
+              "properties": {
+                "TimeProperty": {
+                  "$ref":"#/components/schemas/tns_TextTime"
+                }
+              }
+            },
+            {
+              "type": "object",
+              "properties": {
+                "DateProperty": {
+                  "$ref":"#/components/schemas/tns_TextDate"
+                }
+              }
+            },
+            {
+              "type": "object",
+              "properties": {
+                "DateTimeProperty": {
+                  "$ref":"#/components/schemas/tns_TextDateTime"
+                }
+              }
+            },
+            {
+              "type": "object",
+              "properties": {
+                "Base64BinaryProperty": {
+                  "$ref":"#/components/schemas/tns_TextBase64Binary"
+                }
+              }
+            },
+            {
+              "type": "object",
+              "properties": {
+                "HexBinaryProperty": {
+                  "$ref":"#/components/schemas/tns_TextHexBinary"
+                }
+              }
+            },
+            {
+              "type": "object",
+              "properties": {
+                "StringPropertyArray": {
+                  "type": "array",
+                  "minItems": 1,
+                  "items": {
+                    "$ref":"#/components/schemas/tns_SimpleText"
+                    }
+                  }
+              }
+            },
+            {
+              "type": "object",
+              "properties": {
+                "StringPropertyArrayWithLimit": {
+                  "type": "array",
+                  "maxItems": 3,
+                  "items": {
+                    "$ref":"#/components/schemas/tns_SimpleText"
+                    }
+                  }
+              }
+            }
+          ]
+        },
+      "tns_SimpleText": {
+        "type": "string"
+      },
+      "tns_Max2000Text": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 2000
+      },
+      "tns_Max200TextWithPattern": {
+        "type": "string",
+        "pattern": "^[0-9]*$"
+      },
+      "tns_BooleanType": {
+        "type": "boolean"
+      },
+      "tns_TextTime": {
+        "type": "string",
+        "pattern": "^([0-1]?[0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9](\\.[0-9]{1,3})?(Z|[+]((0[0-9]|1[0-4]):00)|[-]((0[0-9]|1[0-2]):00))?$"
+      },
+      "tns_TextDate": {
+        "type": "string",
+        "format": "date"
+      },
+      "tns_TextDateTime": {
+        "type": "string",
+        "format": "date-time"
+      },
+      "tns_TextBase64Binary": {
+        "type": "string",
+        "format": "byte"
+      },
+      "tns_TextHexBinary": {
+        "type": "string",
+        "format": "binary"
+      }
+    }
+  }
+}

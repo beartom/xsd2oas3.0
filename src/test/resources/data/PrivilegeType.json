@@ -1,0 +1,45 @@
+[
+  {
+    "description": "Privilege Type integer",
+    "data": {
+      "privilegeType": 2
+    },
+    "valid": true
+  },
+  {
+    "description": "Privilege Type double",
+    "data": {
+      "privilegeType": 2.0011
+    },
+    "valid": true
+  },
+  {
+    "description": "Privilege Type big number",
+    "data": {
+      "privilegeType": 1111111111111112.001111
+    },
+    "valid": true
+  },
+  {
+    "description": "Invalid Privilege Type string, expected number",
+    "data": {
+      "privilegeType": "123"
+    },
+    "valid": false
+  },
+  {
+    "description": "Invalid Privilege Type object, expected number",
+    "data": {
+      "privilegeType": {
+        "test": 123
+      }
+    },
+    "valid": false
+  },
+  {
+    "description": "Missing property",
+    "data": {
+    },
+    "valid": false
+  }
+]

@@ -1,0 +1,16 @@
+{
+  "components": {
+    "schemas": {
+       "RootMsgSchema": 
+          {
+          "type": "object",
+          "properties": {
+            "privilegeType": {
+              "type": "number"
+            }
+          },
+          "required": ["privilegeType"]
+        }
+    }
+  }
+}

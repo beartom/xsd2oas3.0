@@ -1,0 +1,57 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="urn:iso" targetNamespace="urn:iso"
+           elementFormDefault="qualified">
+    <xs:element name="OneOfPrivilegeType" type="TestPrivilegeType"/>
+    <xs:complexType name="TestPrivilegeType">
+        <xs:choice>
+            <xs:element name="PrivilegeIntProperty" type="xs:int"/>
+			<xs:element name="PrivilegeStrProperty" type="xs:string"/>
+            <xs:element name="StringProperty" type="SimpleText"/>
+            <xs:element name="StringPropertyWithLength" type="Max2000Text"/>
+            <xs:element name="StringPropertyWithPattern" type="Max200TextWithPattern"/>
+            <xs:element name="BooleanProperty" type="BooleanType"/>
+            <xs:element name="TimeProperty" type="TextTime"/>
+            <xs:element name="DateProperty" type="TextDate"/>
+            <xs:element name="DateTimeProperty" type="TextDateTime"/>
+            <xs:element name="Base64BinaryProperty" type="TextBase64Binary"/>
+            <xs:element name="HexBinaryProperty" type="TextHexBinary"/>
+            <xs:element name="StringPropertyArray" type="SimpleText" maxOccurs="unbounded"/>
+            <xs:element name="StringPropertyArrayWithLimit" type="SimpleText" minOccurs="0"  maxOccurs="3"/>
+        </xs:choice>
+    </xs:complexType>
+
+    <xs:simpleType name="Max2000Text">
+        <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+            <xs:maxLength value="2000"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="SimpleText">
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+    <!-- pattern will ignore other xs:string Restriction -->
+    <xs:simpleType name="Max200TextWithPattern">
+        <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+            <xs:maxLength value="200"/>
+            <xs:pattern value="[0-9]*"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="BooleanType">
+        <xs:restriction base="xs:boolean"/>
+    </xs:simpleType>
+    <xs:simpleType name="TextTime">
+        <xs:restriction base="xs:time"/>
+    </xs:simpleType>
+    <xs:simpleType name="TextDate">
+        <xs:restriction base="xs:date"/>
+    </xs:simpleType>
+    <xs:simpleType name="TextDateTime">
+        <xs:restriction base="xs:dateTime"/>
+    </xs:simpleType>
+    <xs:simpleType name="TextBase64Binary">
+        <xs:restriction base="xs:base64Binary"/>
+    </xs:simpleType>
+    <xs:simpleType name="TextHexBinary">
+        <xs:restriction base="xs:hexBinary"/>
+    </xs:simpleType>
+</xs:schema>

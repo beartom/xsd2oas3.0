@@ -1,0 +1,319 @@
+[
+  {
+    "description": "Missing all choice property",
+    "data": {
+      "OneOfPrivilegeType": {
+      }
+    },
+    "valid": false
+  },
+  {
+    "description": "Invalid Ref XS String Privilege Type, expect xs:int",
+    "data": {
+      "OneOfPrivilegeType": {
+        "PrivilegeIntProperty": "test"
+      }
+    },
+    "valid": false
+  },
+  {
+    "description": "Ref XS int Privilege Type",
+    "data": {
+      "OneOfPrivilegeType": {
+        "PrivilegeIntProperty": 123
+      }
+    },
+    "valid": true
+  },
+  {
+    "description": "Tow ref properties one invalid",
+    "data": {
+      "OneOfPrivilegeType": {
+        "PrivilegeIntProperty": 123,
+        "PrivilegeStrProperty": 123
+      }
+    },
+    "valid": true
+  },
+  {
+    "description": "Tow ref properties two valid",
+    "data": {
+      "OneOfPrivilegeType": {
+        "PrivilegeIntProperty": 123,
+        "PrivilegeStrProperty": "123"
+      }
+    },
+    "valid": false
+  },
+  {
+    "description": "Tow ref properties two invalid",
+    "data": {
+      "OneOfPrivilegeType": {
+        "PrivilegeIntProperty": "123",
+        "PrivilegeStrProperty": 123
+      }
+    },
+    "valid": false
+  },
+  {
+    "description": "Ref XS string Privilege Type",
+    "data": {
+      "OneOfPrivilegeType": {
+        "PrivilegeStrProperty": "123"
+      }
+    },
+    "valid": true
+  },
+  {
+    "description": "Ref Privilege Type SimpleText(xs string)",
+    "data": {
+      "OneOfPrivilegeType": {
+        "StringProperty": "123"
+      }
+    },
+    "valid": true
+  },
+  {
+    "description": "Ref Privilege Type Max20000Text(xs string with min and max length)",
+    "data": {
+      "OneOfPrivilegeType": {
+        "StringPropertyWithLength": "12311"
+      }
+    },
+    "valid": true
+  },
+  {
+    "description": "Ref Privilege Type Max20000Text less than mix length",
+    "data": {
+      "OneOfPrivilegeType": {
+        "StringPropertyWithLength": ""
+      }
+    },
+    "valid": false
+  },
+  {
+    "description": "Ref Privilege Type Max2000Text gather than max length",
+    "data": {
+      "OneOfPrivilegeType": {
+        "StringPropertyWithLength": "012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789"
+      }
+    },
+    "valid": false
+  },
+  {
+    "description": "Ref Privilege Type Max200TextWithPattern (xs string with min、max length and pattern, length ignored)",
+    "data": {
+      "OneOfPrivilegeType": {
+        "StringPropertyWithPattern": "12345"
+      }
+    },
+    "valid": true
+  },
+  {
+    "description": "Ref Privilege Type Max200TextWithPattern length ignored",
+    "data": {
+      "OneOfPrivilegeType": {
+        "StringPropertyWithPattern": "1234567890123456789012345678901234567890123456111178901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901"
+      }
+    },
+    "valid": true
+  },
+  {
+    "description": "Ref Privilege Type Max200TextWithPattern length ignored",
+    "data": {
+      "OneOfPrivilegeType": {
+        "StringPropertyWithPattern": ""
+      }
+    },
+    "valid": true
+  },
+  {
+    "description": "Ref Privilege Type Max200TextWithPattern unmatched pattern",
+    "data": {
+      "OneOfPrivilegeType": {
+        "StringPropertyWithPattern": "12a345"
+      }
+    },
+    "valid": false
+  },
+  {
+    "description": "Ref Privilege Type BooleanType",
+    "data": {
+      "OneOfPrivilegeType": {
+        "BooleanProperty": true
+      }
+    },
+    "valid": true
+  },
+  {
+    "description": "Ref Privilege Type BooleanType",
+    "data": {
+      "OneOfPrivilegeType": {
+        "BooleanProperty": "true"
+      }
+    },
+    "valid": false
+  },
+  {
+    "description": "Ref Privilege Type TextTime",
+    "data": {
+      "OneOfPrivilegeType": {
+        "TimeProperty": "12:16:18"
+      }
+    },
+    "valid": true
+  },
+  {
+    "description": "Ref Privilege Type TextTime",
+    "data": {
+      "OneOfPrivilegeType": {
+        "TimeProperty": "23:59:59"
+      }
+    },
+    "valid": true
+  },
+  {
+    "description": "Ref Privilege Type TextTime",
+    "data": {
+      "OneOfPrivilegeType": {
+        "TimeProperty": "00:00:00"
+      }
+    },
+    "valid": true
+  },
+  {
+    "description": "Ref Privilege Type TextTime",
+    "data": {
+      "OneOfPrivilegeType": {
+        "TimeProperty": "24:00:00"
+      }
+    },
+    "valid": false
+  },
+  {
+    "description": "Ref Privilege Type TextDate",
+    "data": {
+      "OneOfPrivilegeType": {
+        "DateProperty": "2021-04-03"
+      }
+    },
+    "valid": true
+  },
+  {
+    "description": "Ref Privilege Type TextDate invalid",
+    "data": {
+      "OneOfPrivilegeType": {
+        "DateProperty": "2021-04-32"
+      }
+    },
+    "valid": false
+  },
+  {
+    "description": "Ref Privilege Type TextDateTime",
+    "data": {
+      "OneOfPrivilegeType": {
+        "DateTimeProperty": "2021-04-30T21:12:20Z"
+      }
+    },
+    "valid": true
+  },
+  {
+    "description": "Ref Privilege Type TextDateTime",
+    "data": {
+      "OneOfPrivilegeType": {
+        "DateTimeProperty": "2021-04-30T21:12:20+14:00"
+      }
+    },
+    "valid": true
+  },
+  {
+    "description": "Ref Privilege Type TextBase64Binary",
+    "data": {
+      "OneOfPrivilegeType": {
+        "Base64BinaryProperty": "TESTDATAAA=="
+      }
+    },
+    "valid": true
+  },
+  {
+    "description": "Ref Privilege Type TextBase64Binary invalid",
+    "data": {
+      "OneOfPrivilegeType": {
+        "Base64BinaryProperty": "TESTDATAA"
+      }
+    },
+    "valid": false
+  },
+  {
+    "description": "Ref Privilege Type TextBase64Binary invalid",
+    "data": {
+      "OneOfPrivilegeType": {
+        "Base64BinaryProperty": "$##!@!"
+      }
+    },
+    "valid": false
+  },
+  {
+    "description": "Ref Privilege Type TextHexBinary",
+    "data": {
+      "OneOfPrivilegeType": {
+        "HexBinaryProperty": "ADSAWEQDFDS$##!@!"
+      }
+    },
+    "valid": true
+  },
+  {
+    "description": "Ref Privilege Type SimpleText Array",
+    "data": {
+      "OneOfPrivilegeType": {
+        "StringPropertyArray": ["test1","test1","test1","test1","test1","test1","test1"]
+      }
+    },
+    "valid": true
+  },
+  {
+    "description": "Ref Privilege Type SimpleText Array",
+    "data": {
+      "OneOfPrivilegeType": {
+        "StringPropertyArray": []
+      }
+    },
+    "valid": false
+  },
+  {
+    "description": "Ref Privilege Type SimpleText Array invalid",
+    "data": {
+      "OneOfPrivilegeType": {
+        "StringPropertyArray": ""
+      }
+    },
+    "valid": false
+  },
+  {
+    "description": "Ref Privilege Type SimpleText Array max 3 items",
+    "data": {
+      "OneOfPrivilegeType": {
+        "StringPropertyArrayWithLimit":  ["test1","test1","test1"]
+      }
+    },
+    "valid": true
+  },
+  {
+    "description": "Ref Privilege Type SimpleText Array max 3 items",
+    "data": {
+      "OneOfPrivilegeType": {
+        "StringPropertyArrayWithLimit":  []
+      }
+    },
+    "valid": true
+  },
+  {
+    "description": "Ref Privilege Type SimpleText Array exceed max 3 items invalid",
+    "data": {
+      "OneOfPrivilegeType": {
+        "StringPropertyArrayWithLimit":  ["test1","test1","test1","test1"]
+      }
+    },
+    "valid": false
+  }
+]

@@ -1,0 +1,3 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="urn:iso" targetNamespace="urn:iso" elementFormDefault="qualified">
+	<xs:element name="privilegeType" type="xs:int"/>
+</xs:schema>
