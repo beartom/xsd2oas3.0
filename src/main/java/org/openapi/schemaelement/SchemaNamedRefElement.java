@@ -41,7 +41,7 @@ public class SchemaNamedRefElement extends SchemaNamedElement {
         sb.append("'").append(getPropertyName()).append("': {\n");
         if(this.isArray()){
             if(ConvertConfig.ALLOW_SINGLE_OBJECT_IN_ARRAY && this.getMinOccurs()<=1){
-                sb.append("  'oneOf': [\n    {\n").append(retract(ref.getRefName(this.getPrefix()),3)).append("\n    },\n    {\n");
+                sb.append("  'oneOf': [\n    {\n").append(retract(getRefTypeSchema(),3)).append("\n    },\n    {\n");
             }
             StringBuilder arrayType = new StringBuilder();
             arrayType.append("'type': 'array',\n");
@@ -49,15 +49,15 @@ public class SchemaNamedRefElement extends SchemaNamedElement {
                 arrayType.append("'minItems': ").append(this.getMinOccurs()).append(",\n");
             }
             if(!this.getUnbounds()){
-                arrayType.append("'maxItems': ").append(this.getMaxOccors()).append(",\n");
+                arrayType.append("'maxItems': ").append(this.getMaxOccurs()).append(",\n");
             }
             arrayType.append("'items': {\n")
-                    .append(getRefTypeSchema()).append("\n  }\n");
+                    .append(getRefTypeSchema()).append("\n}");
 
             if(ConvertConfig.ALLOW_SINGLE_OBJECT_IN_ARRAY  && this.getMinOccurs()<=1) {
-                sb.append(retract(arrayType, 3)).append("    }\n  ]\n");
+                sb.append(retract(arrayType, 3)).append("\n    }\n  ]\n");
             }else{
-                sb.append(retract(arrayType, 1));
+                sb.append(retract(arrayType, 1)).append("\n");
             }
         }else {
             sb.append(getRefTypeSchema()).append("\n");

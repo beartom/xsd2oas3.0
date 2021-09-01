@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import org.junit.Assert;
 import org.junit.Test;
+import org.openapi.core.ConvertConfig;
 import org.openapi.core.Convertor;
 import org.openapi.schemaelement.SchemaTypeElement;
 import org.openapi4j.core.exception.ResolutionException;
@@ -17,6 +18,8 @@ import org.openapi4j.schema.validator.v3.SchemaValidator;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 
 public class TestConvert {
@@ -27,40 +30,113 @@ public class TestConvert {
 
     @Test
     public void generateYAMLFile(){
-        String filePath = "D:\\MyProjects\\Xsd2Schema\\src\\test\\resources\\xsd";
-        String outputFile = "D:\\MyProjects\\Xsd2Schema\\src\\test\\resources\\yaml";
-        //String filePath = TestConvert.class.getResource("/xsd").getPath();
-        //String outputFile = TestConvert.class.getResource("/yaml").getPath();
+        String filePath = getURL("/xsd").getPath();
+        String outputFile = getURL("/yaml").getPath();
+        List<String> excludeFileName = Arrays.asList("MultiTypeSupport.xsd","SingleObjectInArraySupport.xsd","Embedded.xsd");
         File folder = new File(filePath);
         for(File file :folder.listFiles()) {
-            Convertor.convertXSDToJsonSchema(file.getAbsolutePath(), outputFile);
+            if(file.isFile() && !excludeFileName.contains(file.getName())) {
+                Convertor.convertXSDToJsonSchema(file.getAbsolutePath(), outputFile,null);
+            }
         }
+
+        //Generate schema for test multi_type_support
+        filePath = getURL("/xsd/MultiTypeSupport.xsd").getPath();
+        Convertor.convertXSDToJsonSchema(filePath, outputFile,"MultiTypeSupport_Default");
+        ConvertConfig.MULTI_TYPE_SUPPORT = ConvertConfig.MULTITYPE_OPTION.FORCE_TO_STRING;
+        Convertor.convertXSDToJsonSchema(filePath, outputFile,"MultiTypeSupport_String");
+        ConvertConfig.MULTI_TYPE_SUPPORT = ConvertConfig.MULTITYPE_OPTION.FORCE_TO_NUMBER;
+        Convertor.convertXSDToJsonSchema(filePath, outputFile,"MultiTypeSupport_Num");
+        ConvertConfig.MULTI_TYPE_SUPPORT = ConvertConfig.MULTITYPE_OPTION.BOTH;
+        Convertor.convertXSDToJsonSchema(filePath, outputFile,"MultiTypeSupport_Both");
+        resetConfig();
+
+        //Generate schema for test config_allow_single_object_in_array
+        filePath = getURL("/xsd/SingleObjectInArraySupport.xsd").getPath();
+        Convertor.convertXSDToJsonSchema(filePath, outputFile,"SingleObjectInArraySupport_false");
+        ConvertConfig.ALLOW_SINGLE_OBJECT_IN_ARRAY = true;
+        Convertor.convertXSDToJsonSchema(filePath, outputFile,"SingleObjectInArraySupport_true");
+        resetConfig();
+
+
+        //Generate schema for test config_choice_ref_required
+        filePath = getURL("/xsd/ChoiceBasicType.xsd").getPath();
+        ConvertConfig.EVERY_CHOICE_REF_REQUIRED = true;
+        Convertor.convertXSDToJsonSchema(filePath, outputFile,"ChoiceBasicType_true");
+        resetConfig();
+
+        //Generate schema for test config_ref_anytype
+        filePath = getURL("/xsd/AnyType.xsd").getPath();
+        ConvertConfig.REF_ANYTYPE = ConvertConfig.ANYTYPE_OPTION.REFERENCE;
+        Convertor.convertXSDToJsonSchema(filePath, outputFile,"AnyType_reference");
+        ConvertConfig.REF_ANYTYPE = ConvertConfig.ANYTYPE_OPTION.COMPLICATED;
+        Convertor.convertXSDToJsonSchema(filePath, outputFile,"AnyType_complicated");
+        resetConfig();
     }
 
     @Test
     public void testProvilegeType() throws ResolutionException, IOException {
         validateSchmea("PrivilegeType");
+        resetConfig();
     }
 
     @Test
     public void testBasicType() throws ResolutionException, IOException {
         validateSchmea("ChoiceBasicType");
+        resetConfig();
     }
 
+    @Test
+    public void testSingleObjectInArraySupport() throws ResolutionException, IOException {
+        validateSchmea("SingleObjectInArraySupport_false");
+        ConvertConfig.ALLOW_SINGLE_OBJECT_IN_ARRAY = true;
+        validateSchmea("SingleObjectInArraySupport_true");
+        resetConfig();
+    }
+
+    @Test
+    public void testMultiTypeSupport() throws ResolutionException, IOException {
+        validateSchmea("MultiTypeSupport_Default");
+        ConvertConfig.MULTI_TYPE_SUPPORT = ConvertConfig.MULTITYPE_OPTION.BOTH;
+        validateSchmea("MultiTypeSupport_Both");
+        ConvertConfig.MULTI_TYPE_SUPPORT = ConvertConfig.MULTITYPE_OPTION.FORCE_TO_NUMBER;
+        validateSchmea("MultiTypeSupport_Num");
+        ConvertConfig.MULTI_TYPE_SUPPORT = ConvertConfig.MULTITYPE_OPTION.FORCE_TO_STRING;
+        validateSchmea("MultiTypeSupport_String");
+        resetConfig();
+    }
+
+    @Test
+    public void testAnyType() throws ResolutionException, IOException {
+        validateSchmea("AnyType");
+        ConvertConfig.REF_ANYTYPE = ConvertConfig.ANYTYPE_OPTION.COMPLICATED;
+        validateSchmea("AnyType_complicated");
+        resetConfig();
+    }
+
+    @Test
+    public void testImportAndEmbedded() throws ResolutionException, IOException {
+        validateSchmea("ImportAndEmbedded");
+        resetConfig();
+    }
 
     public void validateSchmea(String fileName) throws IOException, ResolutionException {
-        String xsdPath = TestConvert.class.getResource(String.format(XSD_PATH,fileName)).getPath();
+        String xsdPath = "";
+        if(fileName.indexOf('_')!=-1){
+            xsdPath =  getURL(String.format(XSD_PATH, fileName.substring(0,fileName.indexOf('_')))).getPath();
+        }else {
+            xsdPath = getURL(String.format(XSD_PATH, fileName)).getPath();
+        }
         Map<String, SchemaTypeElement> schemaInstances = Convertor.visitXSD(xsdPath);
         String jsonSchema =  Convertor.outputJsonStr(schemaInstances.values());
-        //jsonSchema.replaceAll("#/components/schemas/","#");
-        //Compare jsonSchema md5
+
         ObjectNode schemaNode = (ObjectNode) TreeUtil.json.readTree(jsonSchema);
         JsonNode rootSchema =TreeUtil.json.createArrayNode().add( schemaNode.at("/components/schemas/RootMsgSchema"));
         schemaNode.set("allOf",  rootSchema);
         ValidationContext validationContext = new ValidationContext(new OAI3Context(new URL("file:/"), schemaNode));
         validationContext.addValidator("properties", MyNullablePropertyValidator::new);
         SchemaValidator schemaValidator = new SchemaValidator(validationContext,null, schemaNode);
-        ArrayNode testNodes = (ArrayNode) TreeUtil.json.readTree(TestConvert.class.getResource(String.format(DATA_PATH,fileName)));
+        ArrayNode testNodes = (ArrayNode) TreeUtil.json.readTree(getURL(String.format(DATA_PATH,fileName)));
         doTest(testNodes,schemaValidator,fileName);
     }
 
@@ -80,7 +156,8 @@ public class TestConvert {
                         data);
                 System.out.println(message);
                 System.out.println(validation.results().toString());
-            }//else{
+            }
+            //else{
             //System.out.println(validation.results().toString());
             //}
 
@@ -88,5 +165,16 @@ public class TestConvert {
                 Assert.fail();
             }
         }
+    }
+    
+    private URL getURL(String relativePath){
+        return TestConvert.class.getResource(relativePath);
+    }
+
+    private void resetConfig(){
+        ConvertConfig.ALLOW_SINGLE_OBJECT_IN_ARRAY = false;
+        ConvertConfig.REF_ANYTYPE = ConvertConfig.ANYTYPE_OPTION.SIMPLIFY;
+        ConvertConfig.EVERY_CHOICE_REF_REQUIRED = false;
+        ConvertConfig.MULTI_TYPE_SUPPORT = ConvertConfig.MULTITYPE_OPTION.DEFAULT;
     }
 }

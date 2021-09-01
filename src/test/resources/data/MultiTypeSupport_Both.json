@@ -1,0 +1,58 @@
+[
+  {
+    "description": "Test support both String and Number",
+    "data": {
+      "NumberTypeElement": {
+        "NumberWithRangeProperty": "100",
+        "NumberWithDigitsProperty": "100"
+      }
+    },
+    "valid": true
+  },
+  {
+    "description": "Test support both String and Number",
+    "data": {
+      "NumberTypeElement": {
+        "NumberWithRangeProperty": 100,
+        "NumberWithDigitsProperty": 100
+      }
+    },
+    "valid": true
+  },
+  {
+    "description": "Test support both String and Number.Out of range but String type don't check range",
+    "data": {
+      "NumberTypeElement": {
+        "NumberWithRangeProperty": "200"
+      }
+    },
+    "valid": true
+  },
+  {
+    "description": "Test support both String and Number. Out of digits size but Number type don't check digits",
+    "data": {
+      "NumberTypeElement": {
+        "NumberWithDigitsProperty": 1.000001
+      }
+    },
+    "valid": true
+  },
+  {
+    "description": "Test support both String and Number. Out of Range",
+    "data": {
+      "NumberTypeElement": {
+        "NumberWithRangeProperty": 101
+      }
+    },
+    "valid": false
+  },
+  {
+    "description": "Test support both String and Number. Out of digits size",
+    "data": {
+      "NumberTypeElement": {
+        "NumberWithDigitsProperty": "1.000001"
+      }
+    },
+    "valid": false
+  }
+]

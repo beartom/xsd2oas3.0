@@ -1,0 +1,120 @@
+[
+  {
+    "description": "Array of Privilege Integer Type",
+    "data": {
+      "ArrayElement": {
+        "PrivilegeIntArray": [123,456]
+      }
+    },
+    "valid": true
+  },
+  {
+    "description": "Array of Privilege Integer Type, invalid single element",
+    "data": {
+      "ArrayElement": {
+        "PrivilegeIntArray": 123
+      }
+    },
+    "valid": true
+  },
+  {
+    "description": "Array of Privilege String Type",
+    "data": {
+      "ArrayElement": {
+        "PrivilegeStrArray": ["123","test"]
+      }
+    },
+    "valid": true
+  },
+  {
+    "description": "Array of Privilege String Type, invalid single element",
+    "data": {
+      "ArrayElement": {
+        "PrivilegeStrArray": "123"
+      }
+    },
+    "valid": true
+  },
+  {
+    "description": "Array of NumberWithRange",
+    "data": {
+      "ArrayElement": {
+        "NumberWithRangeArray": [100,50]
+      }
+    },
+    "valid": true
+  },
+  {
+    "description": "Array of NumberWithRange, out of range",
+    "data": {
+      "ArrayElement": {
+        "NumberWithDigitsArray": 101
+      }
+    },
+    "valid": false
+  },
+  {
+    "description": "Array of NumberWithDigitsArray",
+    "data": {
+      "ArrayElement": {
+        "NumberWithDigitsArray": ["99","50"]
+      }
+    },
+    "valid": true
+  },
+  {
+    "description": "Array of NumberWithDigitsArray, out of digital",
+    "data": {
+      "ArrayElement": {
+        "NumberWithDigitsArray": ["99.000001","50"]
+      }
+    },
+    "valid": false
+  },
+  {
+    "description": "Array of NumberWithDigitsArray, invalid single element",
+    "data": {
+      "ArrayElement": {
+        "NumberWithDigitsArray": "99"
+      }
+    },
+    "valid": true
+  },
+  {
+    "description": "Array of SimpleText",
+    "data": {
+      "ArrayElement": {
+        "StringArray": ["test","123"]
+      }
+    },
+    "valid": true
+  },
+  {
+    "description": "Array of SimpleText, invalid single element",
+    "data": {
+      "ArrayElement": {
+        "StringArray": "test"
+      }
+    },
+    "valid": true
+  },
+  {
+    "description": "Array of BooleanType",
+    "data": {
+      "ArrayElement": {
+        "BooleanArray": [true,false]
+      }
+    },
+    "valid": true
+  },
+  {
+    "description": "Array of BooleanType, invalid single element",
+    "data": {
+      "ArrayElement": {
+        "BooleanArray": true
+      }
+    },
+    "valid": true
+  }
+
+]

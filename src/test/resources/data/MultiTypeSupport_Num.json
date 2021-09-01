@@ -1,0 +1,48 @@
+[
+  {
+    "description": "Test force to Number",
+    "data": {
+      "NumberTypeElement": {
+        "NumberWithRangeProperty": 100,
+        "NumberWithDigitsProperty": 100
+      }
+    },
+    "valid": true
+  },
+  {
+    "description": "Test force to Number. Out of digits size but Number type don't check digits",
+    "data": {
+      "NumberTypeElement": {
+        "NumberWithDigitsProperty": 1.000001
+      }
+    },
+    "valid": true
+  },
+  {
+    "description": "Test force to Number. Invalid String type",
+    "data": {
+      "NumberTypeElement": {
+        "NumberWithRangeProperty": "100"
+      }
+    },
+    "valid": false
+  },
+  {
+    "description": "Test force to Number. Invalid String type",
+    "data": {
+      "NumberTypeElement": {
+        "NumberWithDigitsProperty": "100"
+      }
+    },
+    "valid": false
+  },
+  {
+    "description": "Test force to Number. Out of range",
+    "data": {
+      "NumberTypeElement": {
+        "NumberWithRangeProperty": 101
+      }
+    },
+    "valid": false
+  }
+]

@@ -1,0 +1,8 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="urn:iso:any" targetNamespace="urn:iso:any" elementFormDefault="qualified">
+	<xs:element name="privilegeType" type="AnyType"/>
+	<xs:complexType name="AnyType">
+		<xs:sequence>
+			<xs:any namespace="##any" processContents="lax"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

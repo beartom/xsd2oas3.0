@@ -1,0 +1,34 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="urn:iso" targetNamespace="urn:iso" elementFormDefault="qualified">
+	<xs:element name="ArrayElement" type="ArrayType"/>
+	<xs:complexType name="ArrayType">
+		<xs:choice>
+			<xs:element name="PrivilegeIntArray" type="xs:int" maxOccurs="2"/>
+			<xs:element name="PrivilegeStrArray" type="xs:string" maxOccurs="2"/>
+			<xs:element name="NumberWithRangeArray" type="NumberWithRange" maxOccurs="2"/>
+			<xs:element name="NumberWithDigitsArray" type="NumberWithDigits" maxOccurs="2"/>
+			<xs:element name="StringArray" type="SimpleText" maxOccurs="2"/>
+			<xs:element name="BooleanArray" type="BooleanType" maxOccurs="2"/>
+		</xs:choice>
+	</xs:complexType>
+
+	<xs:simpleType name="NumberWithRange">
+		<xs:restriction base="xs:decimal">
+			<xs:maxInclusive value="100"/>
+			<xs:minInclusive value="10"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="NumberWithDigits">
+		<xs:restriction base="xs:decimal">
+			<xs:fractionDigits value="5"/>
+			<xs:totalDigits value="18"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="SimpleText">
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="BooleanType">
+		<xs:restriction base="xs:boolean"/>
+	</xs:simpleType>
+</xs:schema>

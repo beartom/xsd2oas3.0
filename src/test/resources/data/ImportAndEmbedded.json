@@ -1,0 +1,88 @@
+[
+  {
+    "description": "Test embedded choice ref to other type",
+    "data": {
+      "MainElement": {
+        "embeddedProperty": {
+          "strProperty": "test",
+          "embeddedChoiceStrProperty": "test",
+          "intProperty": 123
+        }
+      }
+    },
+    "valid": true
+  },
+  {
+    "description": "Test embedded choice with a privilege type",
+    "data": {
+      "MainElement": {
+        "choiceProperty1": 1
+      }
+    },
+    "valid": true
+  },
+  {
+    "description": "Test embedded choice with two properties",
+    "data": {
+      "MainElement": {
+        "choiceProperty1": 1,
+        "embeddedProperty": {
+          "strProperty": "test",
+          "embeddedChoiceStrProperty": "test",
+          "intProperty": 123
+        }
+      }
+    },
+    "valid": false
+  },
+  {
+    "description": "Test property and embedded choice of sequence",
+    "data": {
+      "MainElement": {
+        "choiceProperty1": 1,
+        "choiceProperty": {
+          "strChoiceProperty" : "test"
+        }
+      }
+    },
+    "valid": true
+  },
+  {
+    "description": "Test embedded choice not present",
+    "data": {
+      "MainElement": {
+        "choiceProperty": {
+          "strChoiceProperty" : "test"
+        }
+      }
+    },
+    "valid": false
+  },
+  {
+    "description": "Test sequence -> ref to other file  -> choice -> intChoicePropertyOF",
+    "data": {
+      "MainElement": {
+        "refChoiceProperty": {
+          "intChoicePropertyOF" : 1
+        },
+        "choiceProperty1": 1
+      }
+    },
+    "valid": true
+  },
+  {
+    "description": "Test sequence -> choice ->  ref to other file -> sequence -> choice -> sequence -> strSequencePropertyOF",
+    "data": {
+      "MainElement": {
+        "refEmbeddedProperty": {
+          "strProperty" : "test",
+          "embeddedSeqProperty": {
+            "strSequencePropertyOF": "test"
+          }
+        },
+        "choiceProperty1": 1
+      }
+    },
+    "valid": true
+  }
+]

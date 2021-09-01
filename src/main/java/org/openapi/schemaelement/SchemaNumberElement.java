@@ -72,10 +72,37 @@ public class SchemaNumberElement extends SchemaPrivilegeElement {
     @Override
     public StringBuilder convertSchema() {
         StringBuilder sb = new StringBuilder();
-        if(ConvertConfig.MULTI_TYPE_SUPPORT){
-            //TODO
-        }else {
-            if(!hasDigitalLimit()){
+        if (ConvertConfig.MULTI_TYPE_SUPPORT.equals(ConvertConfig.MULTITYPE_OPTION.BOTH)) {
+            sb.append("'oneOf': [\n")
+                    .append("  {\n")
+                    .append("    'type': 'number'");
+            if (this.minimum != null) {
+                sb.append(",\n")
+                        .append("    'minimum': ").append(minimum);
+            }
+            if (this.maximum != null) {
+                sb.append(",\n")
+                        .append("    'maximum': ").append(maximum);
+            }
+            if (this.exclusiveMaximum != null) {
+                sb.append(",\n")
+                        .append("    'exclusiveMaximum': ").append(exclusiveMaximum);
+            }
+            if (this.exclusiveMinimum != null) {
+                sb.append(",\n")
+                        .append("    'exclusiveMinimum': ").append(exclusiveMinimum);
+            }
+            sb.append("\n  },\n")
+                    .append("  {\n")
+                    .append("    'type': 'string'");
+            if (hasDigitalLimit()) {
+                sb.append(",\n");
+                sb.append("'pattern': '^").append(getPatternFromDigitalLimit()).append("$'");
+            }
+            sb.append("\n  }")
+                    .append("\n]");
+        } else {
+            if (toNumber()) {
                 sb.append("'type': 'number'");
                 if (this.minimum != null) {
                     sb.append(",\n")
@@ -93,37 +120,45 @@ public class SchemaNumberElement extends SchemaPrivilegeElement {
                     sb.append(",\n")
                             .append("'exclusiveMinimum': ").append(exclusiveMinimum);
                 }
-            }else{
+            } else if (hasDigitalLimit()) {
                 sb.append("'type': 'string',\n");
                 sb.append("'pattern': '^").append(getPatternFromDigitalLimit()).append("$'");
+            } else {
+                sb.append("'type': 'string'");
             }
         }
         return sb;
     }
 
-    private boolean hasDigitalLimit(){
-        return !(this.fractionDigits==null&&this.totalDigits==null);
+    private boolean hasDigitalLimit() {
+        return !(this.fractionDigits == null && this.totalDigits == null);
     }
 
-    private String getPatternFromDigitalLimit(){
+    private boolean toNumber() {
+        return !ConvertConfig.MULTI_TYPE_SUPPORT.equals(ConvertConfig.MULTITYPE_OPTION.FORCE_TO_STRING) &&
+                (ConvertConfig.MULTI_TYPE_SUPPORT.equals(ConvertConfig.MULTITYPE_OPTION.FORCE_TO_NUMBER) ||
+                        !hasDigitalLimit());
+    }
+
+    private String getPatternFromDigitalLimit() {
         String result;
-        if(this.totalDigits!=null){
-            result = "\\\\d{0,"+this.totalDigits.intValue()+"}";
-        }else{
+        if (this.totalDigits != null) {
+            result = "\\\\d{0," + this.totalDigits.intValue() + "}";
+        } else {
             result = "\\\\d+";
         }
 
-        if(this.fractionDigits!=null){
-            result+="(\\\\.\\\\d{0,"+this.fractionDigits.intValue()+"})?";
+        if (this.fractionDigits != null) {
+            result += "(\\\\.\\\\d{0," + this.fractionDigits.intValue() + "})?";
         }
-        if(this.minimum!=null){
-            try{
+        if (this.minimum != null) {
+            try {
                 //Support negative value.
                 double minValue = Double.parseDouble(minimum);
-                if(minValue<0){
-                    result = "-?"+result;
+                if (minValue < 0) {
+                    result = "-?" + result;
                 }
-            }catch (Exception e){
+            } catch (Exception e) {
                 //Ignore
             }
         }

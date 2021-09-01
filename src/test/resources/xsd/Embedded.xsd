@@ -1,0 +1,28 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="urn:iso:embedded" targetNamespace="urn:iso:embedded" elementFormDefault="qualified">
+
+	<xs:complexType name="ChoiceType">
+		<xs:choice>
+			<xs:element name="strChoicePropertyOF" type="xs:string" />
+			<xs:element name="intChoicePropertyOF" type="xs:int" />
+		</xs:choice>
+	</xs:complexType>
+
+	<xs:complexType name="SequenceType">
+		<xs:sequence>
+			<xs:element name="strSequencePropertyOF" type="xs:string" />
+			<xs:element name="intSequencePropertyOF" type="xs:int" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="ChoiceInSequenceType">
+		<xs:sequence>
+			<xs:element name="strProperty" type="xs:string" />
+			<xs:choice>
+				<xs:element name="embeddedChoiceStrProperty" type="xs:string" />
+				<xs:element name="embeddedChoiceIntProperty" type="xs:string" />
+				<xs:element name="embeddedSeqProperty" type="SequenceType"/>
+			</xs:choice>
+			<xs:element name="intProperty" type="xs:int" />
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

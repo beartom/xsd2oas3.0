@@ -1,0 +1,48 @@
+[
+  {
+    "description": "Test Default。Range limit use Number, Digits limit use String",
+    "data": {
+      "NumberTypeElement": {
+        "NumberWithRangeProperty": 100,
+        "NumberWithDigitsProperty": "100"
+      }
+    },
+    "valid": true
+  },
+  {
+    "description": "Test Default。String invalid for range property",
+    "data": {
+      "NumberTypeElement": {
+        "NumberWithRangeProperty": "100"
+      }
+    },
+    "valid": false
+  },
+  {
+  "description": "Test Default。Out of range",
+  "data": {
+    "NumberTypeElement": {
+      "NumberWithRangeProperty": 101
+    }
+  },
+  "valid": false
+},
+  {
+    "description": "Test Default。Number invalid for digits property",
+    "data": {
+      "NumberTypeElement": {
+        "NumberWithDigitsProperty": 100
+      }
+    },
+    "valid": false
+  },
+  {
+    "description": "Test Default。Invaild format",
+    "data": {
+      "NumberTypeElement": {
+        "NumberWithDigitsProperty": "1.000001"
+      }
+    },
+    "valid": false
+  }
+]

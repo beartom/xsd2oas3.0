@@ -1,0 +1,38 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="urn:iso" targetNamespace="urn:iso" elementFormDefault="qualified">
+	<xs:element name="NumberTypeElement" type="TestNumberType"/>
+	<xs:complexType name="TestNumberType">
+	<xs:sequence>
+		<xs:element name="NumberWithRangeProperty" type="NumberWithRange" minOccurs="0"/>
+		<xs:element name="NumberWithDigitsProperty" type="NumberWithDigits" minOccurs="0"/>
+	</xs:sequence>
+	</xs:complexType>
+
+	<xs:simpleType name="NumberWithRange">
+		<xs:restriction base="xs:decimal">
+			<xs:maxInclusive value="100"/>
+			<xs:minInclusive value="10"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="NumberWithExclusiveRange">
+		<xs:restriction base="xs:decimal">
+			<xs:maxExclusive value="100"/>
+			<xs:minExclusive value="10"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="NumberWithDigits">
+		<xs:restriction base="xs:decimal">
+			<xs:fractionDigits value="5"/>
+			<xs:totalDigits value="18"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="NumberWithDigitsAndRange">
+		<xs:restriction base="xs:decimal">
+			<xs:fractionDigits value="5"/>
+			<xs:totalDigits value="18"/>
+			<xs:minInclusive value="10"/>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

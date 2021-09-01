@@ -1,0 +1,460 @@
+{
+  "components": {
+    "schemas": {
+       "RootMsgSchema": 
+          {
+          "type": "object",
+          "properties": {
+            "MainElement": {
+              "$ref":"#/components/schemas/tns_MainType"
+            }
+          },
+          "required": ["MainElement"]
+        },
+      "tns_MainType": 
+          {
+          "allOf": [
+            {
+              "oneOf": [
+                {
+                  "type": "object",
+                  "properties": {
+                    "choiceProperty1": {
+                      "type": "number"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "embeddedProperty": {
+                      "$ref":"#/components/schemas/tns_ChoiceInSequenceType"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "refEmbeddedProperty": {
+                      "$ref":"#/components/schemas/em_ChoiceInSequenceType"
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "type": "object",
+              "properties": {
+                "mainAnyType": {
+                  "$ref":"#/components/schemas/tns_AnyType"
+                },
+                "refAnyType": {
+                  "$ref":"#/components/schemas/any_AnyType"
+                },
+                "choiceProperty": {
+                  "$ref":"#/components/schemas/tns_ChoiceType"
+                },
+                "refChoiceProperty": {
+                  "$ref":"#/components/schemas/em_ChoiceType"
+                },
+                "refChoiceProperty1": {
+                  "$ref":"#/components/schemas/ch_TestPrivilegeType"
+                },
+                "sequenceProperty": {
+                  "$ref":"#/components/schemas/tns_SequenceType"
+                }
+              }
+            }
+          ]
+        },
+      "tns_AnyType": 
+          {},
+      "any_AnyType": 
+          {},
+      "tns_ChoiceType": 
+          {
+          "oneOf": [
+            {
+              "type": "object",
+              "properties": {
+                "strChoiceProperty": {
+                  "type": "string"
+                }
+              }
+            },
+            {
+              "type": "object",
+              "properties": {
+                "intChoiceProperty1": {
+                  "type": "number"
+                }
+              }
+            }
+          ]
+        },
+      "em_ChoiceType": 
+          {
+          "oneOf": [
+            {
+              "type": "object",
+              "properties": {
+                "strChoicePropertyOF": {
+                  "type": "string"
+                }
+              }
+            },
+            {
+              "type": "object",
+              "properties": {
+                "intChoicePropertyOF": {
+                  "type": "number"
+                }
+              }
+            }
+          ]
+        },
+      "ch_TestPrivilegeType": 
+          {
+          "oneOf": [
+            {
+              "type": "object",
+              "properties": {
+                "PrivilegeIntProperty": {
+                  "type": "number"
+                }
+              }
+            },
+            {
+              "type": "object",
+              "properties": {
+                "PrivilegeStrProperty": {
+                  "type": "string"
+                }
+              }
+            },
+            {
+              "type": "object",
+              "properties": {
+                "NumberWithRangeProperty": {
+                  "$ref":"#/components/schemas/ch_NumberWithRange"
+                }
+              }
+            },
+            {
+              "type": "object",
+              "properties": {
+                "NumberWithDigitsProperty": {
+                  "$ref":"#/components/schemas/ch_NumberWithDigits"
+                }
+              }
+            },
+            {
+              "type": "object",
+              "properties": {
+                "StringProperty": {
+                  "$ref":"#/components/schemas/ch_SimpleText"
+                }
+              }
+            },
+            {
+              "type": "object",
+              "properties": {
+                "StringPropertyWithLength": {
+                  "$ref":"#/components/schemas/ch_Max2000Text"
+                }
+              }
+            },
+            {
+              "type": "object",
+              "properties": {
+                "StringPropertyWithPattern": {
+                  "$ref":"#/components/schemas/ch_Max200TextWithPattern"
+                }
+              }
+            },
+            {
+              "type": "object",
+              "properties": {
+                "BooleanProperty": {
+                  "$ref":"#/components/schemas/ch_BooleanType"
+                }
+              }
+            },
+            {
+              "type": "object",
+              "properties": {
+                "TimeProperty": {
+                  "$ref":"#/components/schemas/ch_TextTime"
+                }
+              }
+            },
+            {
+              "type": "object",
+              "properties": {
+                "DateProperty": {
+                  "$ref":"#/components/schemas/ch_TextDate"
+                }
+              }
+            },
+            {
+              "type": "object",
+              "properties": {
+                "DateTimeProperty": {
+                  "$ref":"#/components/schemas/ch_TextDateTime"
+                }
+              }
+            },
+            {
+              "type": "object",
+              "properties": {
+                "Base64BinaryProperty": {
+                  "$ref":"#/components/schemas/ch_TextBase64Binary"
+                }
+              }
+            },
+            {
+              "type": "object",
+              "properties": {
+                "HexBinaryProperty": {
+                  "$ref":"#/components/schemas/ch_TextHexBinary"
+                }
+              }
+            },
+            {
+              "type": "object",
+              "properties": {
+                "StringPropertyArray": {
+                  "type": "array",
+                  "minItems": 1,
+                  "items": {
+                    "$ref":"#/components/schemas/ch_SimpleText"
+                  }
+                }
+              }
+            },
+            {
+              "type": "object",
+              "properties": {
+                "StringPropertyArrayWithLimit": {
+                  "type": "array",
+                  "maxItems": 3,
+                  "items": {
+                    "$ref":"#/components/schemas/ch_SimpleText"
+                  }
+                }
+              }
+            },
+            {
+              "type": "object",
+              "properties": {
+                "EnumProperty": {
+                  "$ref":"#/components/schemas/ch_EnumType"
+                }
+              }
+            },
+            {
+              "type": "object",
+              "properties": {
+                "EnumArrayProperty": {
+                  "type": "array",
+                  "minItems": 1,
+                  "items": {
+                    "$ref":"#/components/schemas/ch_EnumType"
+                  }
+                }
+              }
+            },
+            {
+              "type": "object",
+              "properties": {
+                "CurrencyAndAmountProperty": {
+                  "$ref":"#/components/schemas/ch_CurrencyAndAmount"
+                }
+              }
+            }
+          ]
+        },
+      "ch_NumberWithRange": {
+        "type": "number",
+        "minimum": 10,
+        "maximum": 100
+      },
+      "ch_NumberWithDigits": {
+        "type": "string",
+        "pattern": "^\\d{0,18}(\\.\\d{0,5})?$"
+      },
+      "ch_SimpleText": {
+        "type": "string"
+      },
+      "ch_Max2000Text": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 2000
+      },
+      "ch_Max200TextWithPattern": {
+        "type": "string",
+        "pattern": "^[0-9]*$"
+      },
+      "ch_BooleanType": {
+        "type": "boolean"
+      },
+      "ch_TextTime": {
+        "type": "string",
+        "pattern": "^([0-1]?[0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9](\\.[0-9]{1,3})?(Z|[+]((0[0-9]|1[0-4]):00)|[-]((0[0-9]|1[0-2]):00))?$"
+      },
+      "ch_TextDate": {
+        "type": "string",
+        "format": "date"
+      },
+      "ch_TextDateTime": {
+        "type": "string",
+        "format": "date-time"
+      },
+      "ch_TextBase64Binary": {
+        "type": "string",
+        "format": "byte"
+      },
+      "ch_TextHexBinary": {
+        "type": "string",
+        "format": "binary"
+      },
+      "ch_EnumType": {
+        "type": "string",
+        "enum": ["AA","BB","CC","DD"]
+      },
+      "ch_CurrencyAndAmount": 
+          {
+          "type": "object",
+          "properties": {
+            "Value": {
+              "$ref":"#/components/schemas/ch_NumberWithDigits"
+            },
+            "Ccy": {
+              "$ref":"#/components/schemas/ch_Text3"
+            }
+          }
+        },
+      "ch_Text3": {
+        "type": "string",
+        "minLength": 3,
+        "maxLength": 3
+      },
+      "tns_SequenceType": 
+          {
+          "type": "object",
+          "properties": {
+            "strSequenceProperty": {
+              "type": "string"
+            },
+            "intSequenceProperty": {
+              "type": "number"
+            }
+          },
+          "required": ["strSequenceProperty", "intSequenceProperty"]
+        },
+      "tns_ChoiceInSequenceType": 
+          {
+          "allOf": [
+            {
+              "oneOf": [
+                {
+                  "type": "object",
+                  "properties": {
+                    "embeddedChoiceStrProperty": {
+                      "type": "string"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "embeddedChoiceIntProperty": {
+                      "type": "number"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "embeddedSeqProperty": {
+                      "$ref":"#/components/schemas/tns_SequenceType"
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "type": "object",
+              "properties": {
+                "strProperty": {
+                  "type": "string"
+                },
+                "intProperty": {
+                  "type": "number"
+                }
+              },
+              "required": ["strProperty", "intProperty"]
+            }
+          ]
+        },
+      "em_ChoiceInSequenceType": 
+          {
+          "allOf": [
+            {
+              "oneOf": [
+                {
+                  "type": "object",
+                  "properties": {
+                    "embeddedChoiceStrProperty": {
+                      "type": "string"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "embeddedChoiceIntProperty": {
+                      "type": "string"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "embeddedSeqProperty": {
+                      "$ref":"#/components/schemas/em_SequenceType"
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "type": "object",
+              "properties": {
+                "strProperty": {
+                  "type": "string"
+                },
+                "intProperty": {
+                  "type": "number"
+                }
+              },
+              "required": ["strProperty", "intProperty"]
+            }
+          ]
+        },
+      "em_SequenceType": 
+          {
+          "type": "object",
+          "properties": {
+            "strSequencePropertyOF": {
+              "type": "string"
+            },
+            "intSequencePropertyOF": {
+              "type": "number"
+            }
+          },
+          "required": ["strSequencePropertyOF", "intSequencePropertyOF"]
+        }
+    }
+  }
+}

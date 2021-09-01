@@ -35,19 +35,17 @@ public class SchemaSequenceElement extends SchemaAbstractElement {
 
         List<SchemaTypeRefElement> refTypeElementList = getSubElements().stream().filter(subElement -> subElement instanceof SchemaTypeRefElement).map(subElement -> (SchemaTypeRefElement)subElement).collect(Collectors.toList());
 
+        int processed = 0;
+
         if(!containerElementList.isEmpty()) {
             containerElementList.forEach(containerElement -> {
-                sb.append(containerElement.convertSchema()).append(",\n");
+                sb.append(containerElement.convertSchema());
             });
-
-            if(propertyElementList.isEmpty()) {
-                sb.setLength(sb.length() - 2);
-            }
-            return sb;
+            processed++;
         }
 
         if(!refTypeElementList.isEmpty()) {
-            if(sb.length()>0){
+            if(processed>0){
                 sb.append(",\n");
             }
             sb.append("{\n")
@@ -59,10 +57,11 @@ public class SchemaSequenceElement extends SchemaAbstractElement {
             sb.setLength(sb.length() - 2);
             sb.append("\n  ]");
             sb.append("\n}");
+            processed++;
         }
 
         if(!propertyElementList.isEmpty()) {
-            if(sb.length()>0){
+            if(processed>0){
                 sb.append(",\n");
             }
             sb.append("{\n")
@@ -81,6 +80,13 @@ public class SchemaSequenceElement extends SchemaAbstractElement {
                 sb.append("]");
             }
             sb.append("\n}");
+            processed++;
+        }
+
+        if(processed>1){
+            StringBuilder allOfSchema = retract(sb, 2);
+            allOfSchema.insert(0,"{\n  'allOf': [\n").append("\n  ]\n}");
+            return allOfSchema;
         }
 
         return sb;

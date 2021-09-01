@@ -15,7 +15,7 @@ public abstract class SchemaAbstractElement {
 
     private int minOccurs=0;
 
-    private int maxOccors=1;
+    private int MaxOccurs=1;
 
     private boolean unbounds = false;
 
@@ -37,12 +37,12 @@ public abstract class SchemaAbstractElement {
         this.minOccurs = minOccurs;
     }
 
-    public int getMaxOccors() {
-        return maxOccors;
+    public int getMaxOccurs() {
+        return MaxOccurs;
     }
 
-    public void setMaxOccors(int maxOccors) {
-        this.maxOccors = maxOccors;
+    public void setMaxOccurs(int MaxOccurs) {
+        this.MaxOccurs = MaxOccurs;
     }
 
     public Boolean getUnbounds() {
@@ -62,7 +62,7 @@ public abstract class SchemaAbstractElement {
     }
 
     public boolean isArray(){
-        return this.maxOccors>1 || this.unbounds;
+        return this.MaxOccurs>1 || this.unbounds;
     }
 
     public void addSubElement(SchemaAbstractElement element){

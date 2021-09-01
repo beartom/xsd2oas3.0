@@ -148,7 +148,7 @@ public class DefaultSchemaVisitor extends BaseSchemaVisitor{
             if(xsdElement.getMaxOccurs().equals("unbounded")){
                 element.setUnbounds(true);
             }else{
-                element.setMaxOccors(Integer.parseInt(xsdElement.getMaxOccurs()));
+                element.setMaxOccurs(Integer.parseInt(xsdElement.getMaxOccurs()));
             }
         }
     }

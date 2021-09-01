@@ -15,7 +15,7 @@ public class ConvertConfig {
      * 1.Convert to both String with pattern validation and Number without validation for Number type in XSD with fractionDigits/totalDigits Restriction.
      * 2.Convert to both String with incomplete pattern validation  and Number with validation for Number type in XSD without fractionDigits/totalDigits Restriction.
      */
-    public static boolean MULTI_TYPE_SUPPORT=false;
+    public static MULTITYPE_OPTION MULTI_TYPE_SUPPORT=MULTITYPE_OPTION.DEFAULT;
 
     public static String REF_PREFIX="#/components/schemas/";
 
@@ -24,6 +24,13 @@ public class ConvertConfig {
     public static boolean EVERY_CHOICE_REF_REQUIRED = false;
 
     public static ANYTYPE_OPTION REF_ANYTYPE = ANYTYPE_OPTION.SIMPLIFY;
+
+    public enum MULTITYPE_OPTION{
+        DEFAULT,
+        FORCE_TO_NUMBER,
+        FORCE_TO_STRING,
+        BOTH
+    }
 
     public enum ANYTYPE_OPTION {
         REFERENCE,

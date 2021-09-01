@@ -35,14 +35,16 @@ public abstract class SchemaPrivilegeElement extends SchemaAbstractElement {
                 ((SchemaNumberElement) privilegeElement).setMaximum(xsdRestriction.getMaxExclusive().getValue());
                 ((SchemaNumberElement) privilegeElement).setExclusiveMaximum(true);
             }else if(xsdRestriction.getMaxInclusive()!=null){
-                ((SchemaNumberElement) privilegeElement).setMaximum(xsdRestriction.getMaxExclusive().getValue());
+                ((SchemaNumberElement) privilegeElement).setMaximum(xsdRestriction.getMaxInclusive().getValue());
+                //((SchemaNumberElement) privilegeElement).setExclusiveMaximum(false);
             }
 
             if(xsdRestriction.getMinExclusive()!=null){
                 ((SchemaNumberElement) privilegeElement).setMinimum(xsdRestriction.getMinExclusive().getValue());
                 ((SchemaNumberElement) privilegeElement).setExclusiveMinimum(true);
-            }else if(xsdRestriction.getMaxInclusive()!=null){
-                ((SchemaNumberElement) privilegeElement).setMinimum(xsdRestriction.getMinExclusive().getValue());
+            }else if(xsdRestriction.getMinInclusive()!=null){
+                ((SchemaNumberElement) privilegeElement).setMinimum(xsdRestriction.getMinInclusive().getValue());
+                //((SchemaNumberElement) privilegeElement).setExclusiveMaximum(false);
             }
 
             if(xsdRestriction.getFractionDigits()!=null){

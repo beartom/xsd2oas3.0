@@ -14,54 +14,80 @@ components:
         properties:
           PrivilegeIntProperty:
             type: "number"
+        required:
+        - "PrivilegeIntProperty"
       - type: "object"
         properties:
           PrivilegeStrProperty:
             type: "string"
+        required:
+        - "PrivilegeStrProperty"
       - type: "object"
         properties:
           NumberWithRangeProperty:
             $ref: "#/components/schemas/tns_NumberWithRange"
+        required:
+        - "NumberWithRangeProperty"
       - type: "object"
         properties:
           NumberWithDigitsProperty:
             $ref: "#/components/schemas/tns_NumberWithDigits"
+        required:
+        - "NumberWithDigitsProperty"
       - type: "object"
         properties:
           StringProperty:
             $ref: "#/components/schemas/tns_SimpleText"
+        required:
+        - "StringProperty"
       - type: "object"
         properties:
           StringPropertyWithLength:
             $ref: "#/components/schemas/tns_Max2000Text"
+        required:
+        - "StringPropertyWithLength"
       - type: "object"
         properties:
           StringPropertyWithPattern:
             $ref: "#/components/schemas/tns_Max200TextWithPattern"
+        required:
+        - "StringPropertyWithPattern"
       - type: "object"
         properties:
           BooleanProperty:
             $ref: "#/components/schemas/tns_BooleanType"
+        required:
+        - "BooleanProperty"
       - type: "object"
         properties:
           TimeProperty:
             $ref: "#/components/schemas/tns_TextTime"
+        required:
+        - "TimeProperty"
       - type: "object"
         properties:
           DateProperty:
             $ref: "#/components/schemas/tns_TextDate"
+        required:
+        - "DateProperty"
       - type: "object"
         properties:
           DateTimeProperty:
             $ref: "#/components/schemas/tns_TextDateTime"
+        required:
+        - "DateTimeProperty"
       - type: "object"
         properties:
           Base64BinaryProperty:
             $ref: "#/components/schemas/tns_TextBase64Binary"
+        required:
+        - "Base64BinaryProperty"
       - type: "object"
         properties:
           HexBinaryProperty:
             $ref: "#/components/schemas/tns_TextHexBinary"
+        required:
+        - "HexBinaryProperty"
       - type: "object"
         properties:
           StringPropertyArray:
@@ -69,6 +95,8 @@ components:
             minItems: 1
             items:
               $ref: "#/components/schemas/tns_SimpleText"
+        required:
+        - "StringPropertyArray"
       - type: "object"
         properties:
           StringPropertyArrayWithLimit:
@@ -80,6 +108,8 @@ components:
         properties:
           EnumProperty:
             $ref: "#/components/schemas/tns_EnumType"
+        required:
+        - "EnumProperty"
       - type: "object"
         properties:
           EnumArrayProperty:
@@ -87,10 +117,14 @@ components:
             minItems: 1
             items:
               $ref: "#/components/schemas/tns_EnumType"
+        required:
+        - "EnumArrayProperty"
       - type: "object"
         properties:
           CurrencyAndAmountProperty:
             $ref: "#/components/schemas/tns_CurrencyAndAmount"
+        required:
+        - "CurrencyAndAmountProperty"
     tns_NumberWithRange:
       type: "number"
       minimum: 10

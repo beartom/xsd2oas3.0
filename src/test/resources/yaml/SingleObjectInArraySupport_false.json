@@ -1,0 +1,114 @@
+{
+  "components": {
+    "schemas": {
+       "RootMsgSchema": 
+          {
+          "type": "object",
+          "properties": {
+            "ArrayElement": {
+              "$ref":"#/components/schemas/tns_ArrayType"
+            }
+          },
+          "required": ["ArrayElement"]
+        },
+      "tns_ArrayType": 
+          {
+          "oneOf": [
+            {
+              "type": "object",
+              "properties": {
+                "PrivilegeIntArray": {
+                  "type": "array",
+                  "minItems": 1,
+                  "maxItems": 2,
+                  "items": {
+                    "type": "number"
+                  }
+                }
+              }
+            },
+            {
+              "type": "object",
+              "properties": {
+                "PrivilegeStrArray": {
+                  "type": "array",
+                  "minItems": 1,
+                  "maxItems": 2,
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            {
+              "type": "object",
+              "properties": {
+                "NumberWithRangeArray": {
+                  "type": "array",
+                  "minItems": 1,
+                  "maxItems": 2,
+                  "items": {
+                    "$ref":"#/components/schemas/tns_NumberWithRange"
+                  }
+                }
+              }
+            },
+            {
+              "type": "object",
+              "properties": {
+                "NumberWithDigitsArray": {
+                  "type": "array",
+                  "minItems": 1,
+                  "maxItems": 2,
+                  "items": {
+                    "$ref":"#/components/schemas/tns_NumberWithDigits"
+                  }
+                }
+              }
+            },
+            {
+              "type": "object",
+              "properties": {
+                "StringArray": {
+                  "type": "array",
+                  "minItems": 1,
+                  "maxItems": 2,
+                  "items": {
+                    "$ref":"#/components/schemas/tns_SimpleText"
+                  }
+                }
+              }
+            },
+            {
+              "type": "object",
+              "properties": {
+                "BooleanArray": {
+                  "type": "array",
+                  "minItems": 1,
+                  "maxItems": 2,
+                  "items": {
+                    "$ref":"#/components/schemas/tns_BooleanType"
+                  }
+                }
+              }
+            }
+          ]
+        },
+      "tns_NumberWithRange": {
+        "type": "number",
+        "minimum": 10,
+        "maximum": 100
+      },
+      "tns_NumberWithDigits": {
+        "type": "string",
+        "pattern": "^\\d{0,18}(\\.\\d{0,5})?$"
+      },
+      "tns_SimpleText": {
+        "type": "string"
+      },
+      "tns_BooleanType": {
+        "type": "boolean"
+      }
+    }
+  }
+}

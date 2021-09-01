@@ -46,7 +46,7 @@ public class SchemaChoiceElement extends SchemaAbstractElement {
                         .append("      'properties': {\n");
                 sb.append(retract(element.convertSchema(), 4));
                 sb.append("\n      }");
-                if(EVERY_CHOICE_REF_REQUIRED){
+                if(EVERY_CHOICE_REF_REQUIRED && element.getMinOccurs()>0){
                     sb.append(",\n      'required': ['").append(((SchemaNamedRefElement) element).getPropertyName()).append("']");
                 }
                 sb.append("\n    },\n");

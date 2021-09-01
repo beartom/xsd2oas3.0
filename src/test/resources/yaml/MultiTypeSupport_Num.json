@@ -1,0 +1,36 @@
+{
+  "components": {
+    "schemas": {
+       "RootMsgSchema": 
+          {
+          "type": "object",
+          "properties": {
+            "NumberTypeElement": {
+              "$ref":"#/components/schemas/tns_TestNumberType"
+            }
+          },
+          "required": ["NumberTypeElement"]
+        },
+      "tns_TestNumberType": 
+          {
+          "type": "object",
+          "properties": {
+            "NumberWithRangeProperty": {
+              "$ref":"#/components/schemas/tns_NumberWithRange"
+            },
+            "NumberWithDigitsProperty": {
+              "$ref":"#/components/schemas/tns_NumberWithDigits"
+            }
+          }
+        },
+      "tns_NumberWithRange": {
+        "type": "number",
+        "minimum": 10,
+        "maximum": 100
+      },
+      "tns_NumberWithDigits": {
+        "type": "number"
+      }
+    }
+  }
+}

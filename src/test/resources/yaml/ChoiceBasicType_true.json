@@ -20,7 +20,8 @@
                 "PrivilegeIntProperty": {
                   "type": "number"
                 }
-              }
+              },
+              "required": ["PrivilegeIntProperty"]
             },
             {
               "type": "object",
@@ -28,7 +29,8 @@
                 "PrivilegeStrProperty": {
                   "type": "string"
                 }
-              }
+              },
+              "required": ["PrivilegeStrProperty"]
             },
             {
               "type": "object",
@@ -36,7 +38,8 @@
                 "NumberWithRangeProperty": {
                   "$ref":"#/components/schemas/tns_NumberWithRange"
                 }
-              }
+              },
+              "required": ["NumberWithRangeProperty"]
             },
             {
               "type": "object",
@@ -44,7 +47,8 @@
                 "NumberWithDigitsProperty": {
                   "$ref":"#/components/schemas/tns_NumberWithDigits"
                 }
-              }
+              },
+              "required": ["NumberWithDigitsProperty"]
             },
             {
               "type": "object",
@@ -52,7 +56,8 @@
                 "StringProperty": {
                   "$ref":"#/components/schemas/tns_SimpleText"
                 }
-              }
+              },
+              "required": ["StringProperty"]
             },
             {
               "type": "object",
@@ -60,7 +65,8 @@
                 "StringPropertyWithLength": {
                   "$ref":"#/components/schemas/tns_Max2000Text"
                 }
-              }
+              },
+              "required": ["StringPropertyWithLength"]
             },
             {
               "type": "object",
@@ -68,7 +74,8 @@
                 "StringPropertyWithPattern": {
                   "$ref":"#/components/schemas/tns_Max200TextWithPattern"
                 }
-              }
+              },
+              "required": ["StringPropertyWithPattern"]
             },
             {
               "type": "object",
@@ -76,7 +83,8 @@
                 "BooleanProperty": {
                   "$ref":"#/components/schemas/tns_BooleanType"
                 }
-              }
+              },
+              "required": ["BooleanProperty"]
             },
             {
               "type": "object",
@@ -84,7 +92,8 @@
                 "TimeProperty": {
                   "$ref":"#/components/schemas/tns_TextTime"
                 }
-              }
+              },
+              "required": ["TimeProperty"]
             },
             {
               "type": "object",
@@ -92,7 +101,8 @@
                 "DateProperty": {
                   "$ref":"#/components/schemas/tns_TextDate"
                 }
-              }
+              },
+              "required": ["DateProperty"]
             },
             {
               "type": "object",
@@ -100,7 +110,8 @@
                 "DateTimeProperty": {
                   "$ref":"#/components/schemas/tns_TextDateTime"
                 }
-              }
+              },
+              "required": ["DateTimeProperty"]
             },
             {
               "type": "object",
@@ -108,7 +119,8 @@
                 "Base64BinaryProperty": {
                   "$ref":"#/components/schemas/tns_TextBase64Binary"
                 }
-              }
+              },
+              "required": ["Base64BinaryProperty"]
             },
             {
               "type": "object",
@@ -116,7 +128,8 @@
                 "HexBinaryProperty": {
                   "$ref":"#/components/schemas/tns_TextHexBinary"
                 }
-              }
+              },
+              "required": ["HexBinaryProperty"]
             },
             {
               "type": "object",
@@ -128,7 +141,8 @@
                     "$ref":"#/components/schemas/tns_SimpleText"
                   }
                 }
-              }
+              },
+              "required": ["StringPropertyArray"]
             },
             {
               "type": "object",
@@ -148,7 +162,8 @@
                 "EnumProperty": {
                   "$ref":"#/components/schemas/tns_EnumType"
                 }
-              }
+              },
+              "required": ["EnumProperty"]
             },
             {
               "type": "object",
@@ -160,7 +175,8 @@
                     "$ref":"#/components/schemas/tns_EnumType"
                   }
                 }
-              }
+              },
+              "required": ["EnumArrayProperty"]
             },
             {
               "type": "object",
@@ -168,7 +184,8 @@
                 "CurrencyAndAmountProperty": {
                   "$ref":"#/components/schemas/tns_CurrencyAndAmount"
                 }
-              }
+              },
+              "required": ["CurrencyAndAmountProperty"]
             }
           ]
         },

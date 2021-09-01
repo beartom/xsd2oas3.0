@@ -15,7 +15,7 @@ import java.util.Iterator;
 import java.util.List;
 
 /**
- * Porperties under 'oneOf' not allow all properties not present
+ * Properties under 'oneOf' not allow all properties not present
  */
 public class MyNullablePropertyValidator extends BaseJsonValidator<OAI3> {
     private static final ValidationResult ERR;

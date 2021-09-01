@@ -1,0 +1,38 @@
+[
+  {
+    "description": "AnyType",
+    "data": {
+      "privilegeType": 2
+    },
+    "valid": true
+  },
+  {
+    "description": "AnyType",
+    "data": {
+      "privilegeType": "test"
+    },
+    "valid": true
+  },
+  {
+    "description": "AnyType",
+    "data": {
+      "privilegeType": {
+        "objectProperty": {
+          "theProperty": 123
+        }
+      }
+    },
+    "valid": true
+  },
+  {
+    "description": "AnyType",
+    "data": {
+      "privilegeType": [{
+        "objectProperty": {
+          "theProperty": 123
+        }
+      }]
+    },
+    "valid": true
+  }
+]

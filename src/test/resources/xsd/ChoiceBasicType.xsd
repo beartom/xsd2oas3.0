@@ -1,10 +1,12 @@
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="urn:iso" targetNamespace="urn:iso"
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="urn:iso:choice" targetNamespace="urn:iso:choice"
            elementFormDefault="qualified">
     <xs:element name="OneOfPrivilegeType" type="TestPrivilegeType"/>
     <xs:complexType name="TestPrivilegeType">
         <xs:choice>
             <xs:element name="PrivilegeIntProperty" type="xs:int"/>
 			<xs:element name="PrivilegeStrProperty" type="xs:string"/>
+            <xs:element name="NumberWithRangeProperty" type="NumberWithRange"/>
+            <xs:element name="NumberWithDigitsProperty" type="NumberWithDigits"/>
             <xs:element name="StringProperty" type="SimpleText"/>
             <xs:element name="StringPropertyWithLength" type="Max2000Text"/>
             <xs:element name="StringPropertyWithPattern" type="Max200TextWithPattern"/>
@@ -16,8 +18,33 @@
             <xs:element name="HexBinaryProperty" type="TextHexBinary"/>
             <xs:element name="StringPropertyArray" type="SimpleText" maxOccurs="unbounded"/>
             <xs:element name="StringPropertyArrayWithLimit" type="SimpleText" minOccurs="0"  maxOccurs="3"/>
+            <xs:element name="EnumProperty" type="EnumType"/>
+            <xs:element name="EnumArrayProperty" type="EnumType" maxOccurs="unbounded"/>
+            <xs:element name="CurrencyAndAmountProperty" type="CurrencyAndAmount" />
         </xs:choice>
     </xs:complexType>
+
+    <xs:complexType name="CurrencyAndAmount">
+        <xs:simpleContent>
+            <xs:extension base="NumberWithDigits">
+                <xs:attribute name="Ccy" type="Text3" use="required"/>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+
+    <xs:simpleType name="NumberWithRange">
+        <xs:restriction base="xs:decimal">
+            <xs:maxInclusive value="100"/>
+            <xs:minInclusive value="10"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="NumberWithDigits">
+        <xs:restriction base="xs:decimal">
+            <xs:fractionDigits value="5"/>
+            <xs:totalDigits value="18"/>
+        </xs:restriction>
+    </xs:simpleType>
 
     <xs:simpleType name="Max2000Text">
         <xs:restriction base="xs:string">
@@ -25,9 +52,17 @@
             <xs:maxLength value="2000"/>
         </xs:restriction>
     </xs:simpleType>
+    <xs:simpleType name="Text3">
+        <xs:restriction base="xs:string">
+            <xs:minLength value="3"/>
+            <xs:maxLength value="3"/>
+        </xs:restriction>
+    </xs:simpleType>
+
     <xs:simpleType name="SimpleText">
         <xs:restriction base="xs:string"/>
     </xs:simpleType>
+
     <!-- pattern will ignore other xs:string Restriction -->
     <xs:simpleType name="Max200TextWithPattern">
         <xs:restriction base="xs:string">
@@ -54,4 +89,15 @@
     <xs:simpleType name="TextHexBinary">
         <xs:restriction base="xs:hexBinary"/>
     </xs:simpleType>
+
+    <xs:simpleType name="EnumType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="AA"/>
+            <xs:enumeration value="BB"/>
+            <xs:enumeration value="CC"/>
+            <xs:enumeration value="DD"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+
 </xs:schema>

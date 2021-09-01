@@ -1,0 +1,57 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="urn:iso" targetNamespace="urn:iso" elementFormDefault="qualified"
+   xmlns:any="urn:iso:any" xmlns:ch="urn:iso:choice" xmlns:em="urn:iso:embedded">
+
+	<xs:import namespace="urn:iso:choice" schemaLocation="ChoiceBasicType.xsd"/>
+	<xs:import namespace="urn:iso:any" schemaLocation="AnyType.xsd"/>
+	<xs:import namespace="urn:iso:embedded" schemaLocation="Embedded.xsd"/>
+
+	<xs:element name="MainElement" type="MainType"/>
+
+	<xs:complexType name="MainType">
+		<xs:sequence>
+			<xs:element name="mainAnyType" type="AnyType" minOccurs="0"/>
+			<xs:element name="refAnyType" type="any:AnyType" minOccurs="0"/>
+			<xs:element name="choiceProperty" type="ChoiceType" minOccurs="0"/>
+			<xs:element name="refChoiceProperty" type="em:ChoiceType" minOccurs="0"/>
+			<xs:element name="refChoiceProperty1" type="ch:TestPrivilegeType" minOccurs="0"/>
+			<xs:element name="sequenceProperty" type="SequenceType" minOccurs="0"/>
+			<xs:choice>
+				<xs:element name="choiceProperty1" type="xs:int"/>
+				<xs:element name="embeddedProperty" type="ChoiceInSequenceType"/>
+				<xs:element name="refEmbeddedProperty" type="em:ChoiceInSequenceType"/>
+			</xs:choice>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="ChoiceType">
+		<xs:choice>
+			<xs:element name="strChoiceProperty" type="xs:string" />
+			<xs:element name="intChoiceProperty1" type="xs:int" />
+		</xs:choice>
+	</xs:complexType>
+
+	<xs:complexType name="SequenceType">
+		<xs:sequence>
+			<xs:element name="strSequenceProperty" type="xs:string" />
+			<xs:element name="intSequenceProperty" type="xs:int" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="ChoiceInSequenceType">
+		<xs:sequence>
+			<xs:element name="strProperty" type="xs:string" />
+			<xs:choice>
+				<xs:element name="embeddedChoiceStrProperty" type="xs:string" />
+				<xs:element name="embeddedChoiceIntProperty" type="xs:int" />
+				<xs:element name="embeddedSeqProperty" type="SequenceType"/>
+			</xs:choice>
+			<xs:element name="intProperty" type="xs:int" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="AnyType">
+		<xs:sequence>
+			<xs:any namespace="##any" processContents="lax"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

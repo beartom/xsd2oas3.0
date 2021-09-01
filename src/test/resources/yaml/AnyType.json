@@ -1,0 +1,18 @@
+{
+  "components": {
+    "schemas": {
+       "RootMsgSchema": 
+          {
+          "type": "object",
+          "properties": {
+            "privilegeType": {
+              "$ref":"#/components/schemas/tns_AnyType"
+            }
+          },
+          "required": ["privilegeType"]
+        },
+      "tns_AnyType": 
+          {}
+    }
+  }
+}
