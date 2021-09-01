@@ -97,14 +97,14 @@ Default value: **false**
 
 Allow single element in array when MinOccurs<=1 and MaxOccurs>1.
 
-######e.g. [SingleObjectInArraySupport.xsd](src/test/resources/xsd/SingleObjectInArraySupport.xsd) to [SingleObjectInArraySupport_true.yaml](src/test/resources/yaml/SingleObjectInArraySupport_true.yaml) or [SingleObjectInArraySupport_false.yaml](src/test/resources/yaml/SingleObjectInArraySupport_false.yaml)
+###### 　　e.g. [SingleObjectInArraySupport.xsd](src/test/resources/xsd/SingleObjectInArraySupport.xsd) to [SingleObjectInArraySupport_true.yaml](src/test/resources/yaml/SingleObjectInArraySupport_true.yaml) or [SingleObjectInArraySupport_false.yaml](src/test/resources/yaml/SingleObjectInArraySupport_false.yaml)
 
 ### **-config_choice_ref_required**
 Default value: **false**
 
 Keyword 'required' for every element in choice when the minOccurs of element gather than 0.
 
-######e.g. [ChoiceBasicType.xsd](src/test/resources/xsd/ChoiceBasicType.xsd) to [SingleObjectInArraySupport_true.yaml](src/test/resources/yaml/SingleObjectInArraySupport_true.yaml) or [SingleObjectInArraySupport.yaml](src/test/resources/yaml/ChoiceBasicType.yaml)
+###### 　　e.g. [ChoiceBasicType.xsd](src/test/resources/xsd/ChoiceBasicType.xsd) to [SingleObjectInArraySupport_true.yaml](src/test/resources/yaml/SingleObjectInArraySupport_true.yaml) or [SingleObjectInArraySupport.yaml](src/test/resources/yaml/ChoiceBasicType.yaml)
 
 ### **-config_ref_anytype**
 Default value: **SIMPLIFY**
